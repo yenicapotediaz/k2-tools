@@ -48,7 +48,7 @@ ENV     APK_PACKAGES="bash ca-certificates openssl openssh python py-openssl py-
 ENV     APK_DEV_PACKAGES="gcc g++ git make libffi-dev linux-headers musl-dev libc-dev openssl-dev python-dev unzip mkinitfs kmod mtools squashfs-tools"
 
 RUN     apk add --update --no-cache ${APK_PACKAGES} ${APK_DEV_PACKAGES} && \
-    	/alpine-builds/build-docker.sh && \
+    	  /alpine-builds/build-docker.sh && \
         rm -rf /alpine-builds
 
 # Terraform
@@ -64,13 +64,13 @@ RUN     wget -q https://github.com/samsung-cnct/terraform-provider-execute/relea
         mv terraform-provider-execute /usr/bin/
 
 # Adding Terraform CoreOS Box addon
-RUN 	wget -q https://github.com/samsung-cnct/terraform-provider-coreosbox/releases/download/${TF_COREOSBOX_VERSION}/terraform-provider-coreosbox_linux_amd64.tar.gz && \
+RUN 	  wget -q https://github.com/samsung-cnct/terraform-provider-coreosbox/releases/download/${TF_COREOSBOX_VERSION}/terraform-provider-coreosbox_linux_amd64.tar.gz && \
         tar -zxvf terraform-provider-coreosbox_linux_amd64.tar.gz && \
         rm terraform-provider-coreosbox_linux_amd64.tar.gz && \
         mv terraform-provider-coreosbox /usr/bin/
 
 # Adding Terraform Distro Image Selector addon
-RUN 	wget -q https://github.com/samsung-cnct/terraform-provider-distroimage/releases/download/${TF_DISTROIMAGE_VERSION}/terraform-provider-distroimage_linux_amd64.tar.gz && \
+RUN 	  wget -q https://github.com/samsung-cnct/terraform-provider-distroimage/releases/download/${TF_DISTROIMAGE_VERSION}/terraform-provider-distroimage_linux_amd64.tar.gz && \
         tar -zxvf terraform-provider-distroimage_linux_amd64.tar.gz && \
         rm terraform-provider-distroimage_linux_amd64.tar.gz && \
         mv terraform-provider-distro /usr/bin/
@@ -114,9 +114,9 @@ RUN     wget -q http://storage.googleapis.com/kubernetes-helm/helm-${K8S_HELM_VE
         mv linux-amd64/helm /opt/cnct/kubernetes/v1.7/bin/helm  && \
         rm -rf linux-amd64 helm-${K8S_HELM_VERSION_1_7}-linux-amd64.tar.gz
 
-RUN ln -s /opt/cnct/kubernetes/${LATEST} /opt/cnct/kubernetes/latest && \
-         ln -s /opt/cnct/kubernetes/${LATEST}/bin/kubectl /usr/bin/ && \
-         ln -s /opt/cnct/kubernetes/${LATEST}/bin/helm /usr/bin/
+RUN     ln -s /opt/cnct/kubernetes/${LATEST} /opt/cnct/kubernetes/latest && \
+        ln -s /opt/cnct/kubernetes/${LATEST}/bin/kubectl /usr/bin/ && \
+        ln -s /opt/cnct/kubernetes/${LATEST}/bin/helm /usr/bin/
 
 
 # Python (including ansible)
